@@ -5,9 +5,11 @@ let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb+srv://rousbepistola:3te5hrlns2gy@cluster0-1lsui.azure.mongodb.net/test?retryWrites=true&w=majority";
 
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   ssn = req.session;
+  console.log("This is a subBranch of my github repo");
  
 // Error handler for different king of login/signup errors
   switch (ssn.errorNumber) {
