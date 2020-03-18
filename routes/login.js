@@ -22,7 +22,8 @@ router.post('/', function(req, res, next){
 
         dbo.collection("userInfo").findOne(myinfo, function(err, data){
             if(data == null){
-                ssn.loginError = "There is a problem logging you in";
+                ssn.loginError = "User credentials does not exist";
+                ssn.errorNumber = 3;
                 console.log("data null");
                 res.redirect('/');
                 

@@ -8,22 +8,33 @@ let url = "mongodb+srv://rousbepistola:3te5hrlns2gy@cluster0-1lsui.azure.mongodb
 /* GET home page. */
 router.get('/', function(req, res, next) {
   ssn = req.session;
-  if(ssn.signUpError){
-    res.render('index', { 
-      loginError: ssn.signUpError
-    });
-  }else if(ssn.loginfirst){
-    res.render('index', { 
-      loginError: ssn.loginfirst 
-    });
-  } else if(ssn.loginError){
-    res.render('index', { 
-      loginError: ssn.loginError
-    });
-  } else {
-    res.render('index');
+ 
+// Error handler for different king of login/signup errors
+  switch (ssn.errorNumber) {
+    case 1:
+      res.render('index', { 
+        loginError: ssn.signUpError
+      });
+      break;
+    case 2:
+      res.render('index', { 
+        loginError: ssn.loginfirst 
+      });
+      break;
+    case 3:
+      res.render('index', { 
+        loginError: ssn.loginError
+      });
+      break;  
+    default:
+      res.render('index');
+
   }
   
+
+
+
+
 });
 
 module.exports = router;
