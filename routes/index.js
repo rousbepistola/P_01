@@ -28,6 +28,11 @@ router.get('/', function(req, res, next) {
         loginError: ssn.loginError
       });
       break;  
+    case 4:
+      res.render('index', { 
+        loginError: "Login with your new password"
+      });
+      break;  
     default:
       res.render('index');
 

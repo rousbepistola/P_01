@@ -54,27 +54,41 @@ html(lang='en')
     // navigation end
     .container-fluid.bg
       .row
-        .col-xs-12.col-md-4.col-sm-2
-        .col-xs-12.col-md-4.col-sm-8
-          // form start
-          
-          form.form-container(action='login', role='form', method="post")
-            p.text-justify(style='color:salmon;') #{loginError}
-            h1 Login
+        .col-xs-12.col-md-3.col-sm-3
+          form.form-container(action='generatepass', role='form', method="post")
+            h3 Generate Temporary Password
+            small #{noemail} #{yesemail}
             .form-group
               label(for='exampleInputEmail1') Email address
               input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', name='email')
-              small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
-            .form-group
-              label(for='exampleInputPassword1') Password
-              input#exampleInputPassword1.form-control(type='password', name='pass')
-              p.col-xs-12.col-md-12.col-sm-12
-                a(href='./forgotpass' style='color:salmon;') Forgot Password?
             button.btn.btn-success.btn-block(type='submit') Submit
-            p.col-xs-12.col-md-12.col-sm-12
-              a(href='./signup') Register now
+
+        .col-xs-12.col-md-2.col-sm-2
+
+        .col-xs-12.col-md-7.col-sm-7
+          // form start
+          
+
+          form.form-container(action='forgotpass', role='form', method="post")
+            p.text-justify(style='color:salmon;') Generate Temporary Password First
+            small(style="color:salmon;") #{nomatch}
+            p.text-justify(style='color:salmon;') #{passnomatch}
+            h1 Forgot Password
+            .form-group
+              label(for='exampleInputEmail1') Email address
+              input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', name='email')
+            .form-group
+              label(for='temppass') Temporary Password
+              input#exampleInputPassword1.form-control(type='password', name='temppass')
+            .form-group
+              label(for='newpass') New Password
+              input#exampleInputPassword1.form-control(type='password', name='newpass')
+            .form-group
+              label(for='confirmpass') Confirm New Password
+              input#exampleInputPassword1.form-control(type='password', name='confirmpass')
+            button.btn.btn-success.btn-block(type='submit') Submit
             
               
               
           // form end
-        .col-xs-12.col-md-4.col-sm-2
+
