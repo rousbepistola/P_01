@@ -57,6 +57,7 @@ router.post('/', function(req, res, next){
                 ssn.firstName = data.fname;
                 ssn.userEmail = data.email;
                 console.log("data existing and password matched");
+                console.log(ssn.firstName);
                 res.redirect("profile");
             }
             db.close();
