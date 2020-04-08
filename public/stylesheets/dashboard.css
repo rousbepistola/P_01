@@ -64,6 +64,37 @@
         transform: translateY(-3px);
     }
 
+    /* TOOLTIP */
+    .tooltip {    
+        opacity: 90%;
+        position:relative;
+        color: salmon;
+      }
+      
+    .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 250px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    
+    /* Position the tooltip */
+    position: absolute;
+    bottom: 100%;
+    left:0%;
+    margin-left:125px;
+    }
+    
+    .tooltip:hover .tooltiptext {
+    visibility: visible;
+    }
+
+
+
+    /* TOOLTIP END */
+
     /* .icon-parent {
         position:relative;
     }

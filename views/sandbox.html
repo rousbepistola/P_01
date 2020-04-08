@@ -353,4 +353,46 @@
     </script>
     
 </body>
+<<<<<<< Updated upstream
 </html>
+=======
+</html>
+
+
+<!-- 
+
+
+//CODE FOR AIR QUALITY
+airQuality();
+function airQuality(){
+  let airLat = document.getElementById('latResult').innerHTML;
+  let airLng = document.getElementById('lngResult').innerHTML;
+
+  axios.get('https://ambee-air-quality.p.rapidapi.com/latest/by-lat-lng', {
+  params:{
+  key: "2e0f4c1489mshd0a4382ec92e089p14e41bjsnef78ff4ef206",
+  limit: 1,
+  x-rapidapi-key: 'AIzaSyCFpf4F_1DzzQmZrf3xsNggEibIQixO0k8',
+  lng: airLng,
+  lat: airLat
+  }
+  }).then(function(response){
+    console.log("This is air quality :" + response);
+  })
+} -->
+
+
+<!-- <button class="btn btn-success" onclick="airQuality()"></button> -->
+
+
+<!-- <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul> -->
+
+
+
+>>>>>>> Stashed changes
