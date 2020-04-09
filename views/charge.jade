@@ -1,0 +1,177 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, shrink-to-fit=no')
+    title Checkout
+    // BOOTSTRAP
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
+    script(async='', src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n', crossorigin='anonymous')
+    script(async='', src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo', crossorigin='anonymous')
+    script(async='', src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n', crossorigin='anonymous')
+
+    // FONTAWESOME
+    script(src='https://kit.fontawesome.com/3d3ae9b37d.js', crossorigin='anonymous')
+    // GOOGLE FONT
+    link(href='https://fonts.googleapis.com/css?family=Montserrat&display=swap', rel='stylesheet')
+    // STYLESHEET
+    link(rel='stylesheet', href='/stylesheets/dashboard.css')
+    // STRIPE CHECKOUT
+    script(src='https://js.stripe.com/v3/')
+    style.
+        .form-row {
+        display: inherit;
+        }
+
+
+    
+
+
+  body
+    nav.navbar.navbar-expand-md.navbar-light
+      button.navbar-toggler.ml-auto.mb-2.bg-light(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.navbar-toggler-icon
+      #myNavbar.collapse.navbar-collapse
+        .container-fluid
+          .row
+            // sidebar
+            .col-lg-3.col-xl-2.col-md-4.sidebar.fixed-top
+              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') Localetti
+              .bottom-border.pb-3
+                //- img.rounded-circle.mr-3(src='https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260', alt='Image on Profile dashboard', width='50', height='50')
+                h3.text-white #{name}
+                a.text-white(href='#')#userEmail #{mail}
+              ul.navbar-nav.flex-column.mt-4
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2(href='profile')
+                    i.fa.fa-home.text-light.fa-lg.mr-2
+                    | Dashboard
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link.current(href='#')
+                    i.fa.fa-user.text-light.fa-lg.mr-2
+                    | Account Settings
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fa.fa-envelope.text-light.fa-lg.mr-2
+                    | Inbox (WIP)
+            // end of sidebar
+            // topNav
+            .col-lg-9.col-xl-10.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar(style='z-index:10;')
+              .row.align-item-center
+                .col-md-9
+                  h4.text-light.text-uppercase.mt-1 #{name} - Dashboard
+                .col-md-3
+                  ul.navbar-nav
+                    ul.nav-item.ml-md-auto.icon-parent
+                      a.nav-link.icon-bullet.text-white(href='logout')
+                        i.fas.fa-sign-out-alt.text-muted.fa-lg
+                        | Logout
+
+
+    section
+        .container-fluid
+            .row
+                .col-lg-9.col-md-8.ml-auto
+                    .row.pt-5.mt-3.mb-5
+                        .col-lg-1
+                        .col-sm-12.col-md-12.col-lg-10.pd-2
+                            .card
+                                .card-body
+                                    i.fas.fa-map.fa-2x.text-info.mb-3  Activate your subscription
+                                    div
+                                        form#subscription-form
+                                            #card-element.MyCardElement
+                                                // Elements will create input elements here
+                                                // We'll put the error messages in this element
+                                            #card-errors(role='alert')
+                                            button.btn.btn-success.mt-3(type='submit') Subscribe
+                                            p
+                                                small.mt-3 
+                                                    p
+                                                        |As per stripe documentation:
+                                                    p
+                                                        |Use the test card number 4242 4242 4242 4242, any three-digit CVC number, any expiration date in the future, and any five-digit ZIP code.
+                                            p.mt-5.text-warning#paymentError
+
+
+                        .col-lg-1
+
+
+
+    script(src='https://unpkg.com/axios/dist/axios.min.js')
+    script.
+        // Set your publishable key: remember to change this to your live publishable key in production
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        var stripe = Stripe('pk_test_uldQfpLT7sjH9MZwQqz4eCNO00rPVteNoO');
+        var elements = stripe.elements();
+        // Set up Stripe.js and Elements to use in checkout form
+        var style = {
+        base: {
+            color: "#32325d",
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: "antialiased",
+            fontSize: "16px",
+            "::placeholder": {
+            color: "#aab7c4"
+            }
+        },
+        invalid: {
+            color: "#fa755a",
+            iconColor: "#fa755a"
+        }
+        };
+
+        var cardElement = elements.create("card", { style: style });
+        cardElement.mount("#card-element");
+
+        card.addEventListener('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+        });
+
+
+        var form = document.getElementById('subscription-form');
+        var email = document.getElementById('userEmail');
+        var payError = document.getElementById('paymentError'); 
+
+        form.addEventListener('submit', function(event) {
+            // We don't want to let default form submission happen here,
+            // which would refresh the page.
+            event.preventDefault();
+
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: {
+                email: email.innerHTML,
+                },
+            }).then(stripePaymentMethodHandler);
+        });
+
+        function stripePaymentMethodHandler(result, email) {
+        if (result.error) {
+            // Show error in payment form
+            payError.innerHTML = `Payment was not succesful with error: ${result.error}`
+        } else {
+            // Otherwise send paymentMethod.id to your server
+            fetch('account', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: email.innerHTML,
+                payment_method: result.paymentMethod.id
+            }),
+            }).then(function(result) {
+            return result.json();
+            }).then(function(customer) {
+            // The customer has been created
+            });
+        }
+        }
+
+    

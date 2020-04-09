@@ -35,9 +35,9 @@ html(lang='en')
                     i.fa.fa-home.text-light.fa-lg.mr-2
                     | Dashboard
                 li.nav-item
-                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='/account')
                     i.fa.fa-user.text-light.fa-lg.mr-2
-                    | Profile Settings (WIP)
+                    | Account Settings
                 li.nav-item
                   a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
                     i.fa.fa-envelope.text-light.fa-lg.mr-2
@@ -46,14 +46,8 @@ html(lang='en')
             // topNav
             .col-lg-9.col-xl-10.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar(style='z-index:10;')
               .row.align-item-center
-                .col-md-4
+                .col-md-9
                   h4.text-light.text-uppercase.mt-1 #{name} - Dashboard
-                .col-md-5
-                  form(action='#' id="location-form")
-                    .input-group
-                      input.form-control.search-input.text-white(type='text',id="location-input" placeholder='Search neighborhood . . .')
-                      button.btn.btn-info(type='submit')
-                        i.fas.fa-search.text-danger.search-button
                 .col-md-3
                   ul.navbar-nav
                     ul.nav-item.ml-md-auto.icon-parent
@@ -69,6 +63,12 @@ html(lang='en')
             .row.pt-5.mt-3.mb-5
               .col-lg-1
               .col-sm-12.col-md-12.col-lg-10.pd-2
+                .col-md-5.mb-5
+                  form(action='#' id="location-form")
+                    .input-group
+                      input.form-control.search-input.text-dark(type='text',id="location-input" placeholder='Search neighborhood . . .')
+                      button.btn.btn-info(type='submit')
+                        i.fas.fa-search.text-danger.search-button
                 .card
                   .card-body
                     i.fas.fa-map.fa-2x.text-info.mb-3  Location Information
@@ -85,9 +85,6 @@ html(lang='en')
                 .card
                   .card-body
                     .text-left.text-secondary
-<<<<<<< Updated upstream
-                      h4.text-success Air Quality In the area (Not Live yet)
-=======
                       button.btn.btn-info.mb-4(onclick='airQualityBreezo()') Get Air Quality from BreezoMeter
                       h4.text-success Air Quality Summary
                       .col-md-12#airQualityOutput2
@@ -138,55 +135,16 @@ html(lang='en')
                     .text-left.text-secondary
                       button.btn.btn-success(onclick='airQuality()') Get Air Quality
                       h4.text-success Air Quality In the area (Better Data presentation WIP)
->>>>>>> Stashed changes
                       p
                         strong BRIEF EXPLANATION ON A TOOLTIP?
-                      h6  AQI:29
-                      h6 aqiInfo:"{"category": "Good", "pollutant": "PM2.5", "concentration": 6}"
-                      h6 updatedAt:"2020-03-25T16:05:28.000Z"
-                      h6 countryCode:"CA"
-                      h6 placeName:"Downtown Toronto (Rosedale)"
-                      h6 postalCode:"M4W"
-                      h6 state:"Ontario"
-                      h6 city:"Ontario ON"
-                      h6 division:"Toronto"
-                      h6 lat:43.6827
-                      h6 lng:-79.373
-                      h6
+                      h6#airQualityOutput
                         strong OVERALL QUALITY
-                      .progress
-                        .progress-bar.bg-success(role='progressbar', style='width: 75%', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
+                      //- .progress
+                      //-   .progress-bar.bg-success(role='progressbar', style='width: 75%', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
               .col-lg-1
 
-<<<<<<< Updated upstream
-          .col-lg-9.col-md-8.ml-auto
-            .row.pt-5.mt-3.mb-5
-              .col-lg-1
-              .col-sm-12.col-md-12.col-lg-10.pd-2
-                .card
-                  .card-body
-                    .text-left.text-secondary
-                      h4.text-success Crime Rate and Numbers (Not Live yet)
-                      p
-                        strong BRIEF EXPLANATION ON A TOOLTIP?
-                      h6 updatedAt:"2020-03-25T16:05:28.000Z"
-                      h6 countryCode:"CA"
-                      h6 postalCode:"M4W"
-                      h6 state:"Ontario"
-                      h6 city:"Ontario ON"
-                      h6 division:"Toronto"
-                      h6 lat:43.6827
-                      h6 lng:-79.373
-                      h6
-                        strong OVERALL SAFETY
-                      .progress
-                        .progress-bar.bg-warning(role='progressbar', style='width: 33%', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
-              .col-lg-1
-      script(src='https://unpkg.com/axios/dist/axios.min.js')
-=======
 
     script(src='https://unpkg.com/axios/dist/axios.min.js')
->>>>>>> Stashed changes
     script.
       // geocode();
       // GET LOCATION FORM
@@ -232,8 +190,8 @@ html(lang='en')
       let lng = response.data.results[0].geometry.location.lng;
       let geometryOutput = `
       <ul>
-      <li><strong>Latitude: </strong>${lat}</li>
-      <li><strong>Longitude: </strong>${lng}</li>
+      <li><strong>Latitude: </strong><span id="latResult">${lat}</span></li>
+      <li><strong>Longitude: </strong><span id="lngResult">${lng}</span></li>
       </ul>
       `;
       // OUTPUT TO APP
@@ -244,10 +202,136 @@ html(lang='en')
       .catch(function(error){
       console.log(error);
       })
+
       }
-<<<<<<< Updated upstream
-            
-=======
+
+
+       //------------------ CODE FOR AIR QUALITY-------------------------------------
+      function airQuality(){
+
+        let airLat = document.getElementById('latResult').innerHTML;
+        let airLng = document.getElementById('lngResult').innerHTML;
+        let airQualityOutput =  document.getElementById('airQualityOutput');
+        airQualityOutput.innerHTML = "Loading Information";
+        axios({
+            "method":"GET",
+            "url":"https://ambee-air-quality.p.rapidapi.com/latest/by-lat-lng",
+            "headers":{
+            "content-type":"application/octet-stream",
+            "x-rapidapi-host":"ambee-air-quality.p.rapidapi.com",
+            "x-rapidapi-key":"2e0f4c1489mshd0a4382ec92e089p14e41bjsnef78ff4ef206"
+            },"params":{
+            "limit":"10",
+            "lng":airLng,
+            "lat":airLat
+            }
+            })
+            .then((response)=>{
+              let airQualityData = response.data.stations[0];
+              console.log(airQualityData);
+            //-   let airQualityOutput = '<ul>';
+            //- for(let i = 0; i < response.data.stations[0].length; i++){
+            //- airQualityOutput += `
+            //- <li>${response.data.stations[0][i].types[0]} :  ${addressComponents[i].long_name}</li>
+            //- `;
+
+
+              airQualityOutput.innerHTML = `
+                <ul>
+                    <li>${airQualityData.countryCode}</li>
+                    <li>Updated Last: ${airQualityData.updatedAt}</li>
+                    <li>${airQualityData.city}</li>
+                    <li>Test center: ${airQualityData.division}</li>
+                    <li>${airQualityData.placeName}</li>
+                    <li class = "text-success"><strong>${airQualityData.aqiInfo}</strong></li>
+                    <li> DIstance from test center: ${airQualityData.distance}km</li>
+                    
+                </ul>
+              `
+            })
+            .catch((error)=>{
+              console.log(error)
+              airQualityOutput.innerHTML = `<h4 class="text-warning">Failed to fetch data. Please try again</h4>`
+            })
+                
+      }
+      //END ------------------ CODE FOR AIR QUALITY END-------------------------------------
+
+
+
+      //------------------ CODE FOR CRIME RATE -------------------------------------
+      //----------------------https://data.torontopolice.on.ca/datasets/neighbourhood-crime-rates-boundary-file-/geoservice?geometry=-79.657%2C43.795%2C-79.004%2C43.882------
+      //api BY TORONTO GOVERNMENT
+      //- NOTE: 0.01 degree difference in lng lat == 1.1132 km
+      //Created Home upper and lower limit for Lat and Lng to see approx 5.5km radius if any crime is reported
+
+      function crimeNow(){
+        let crimeOutput = document.getElementById('crimeRateOutput');
+        crimeOutput.innerHTML = "";
+
+  
+
+      //- ===========================================Car Theft=============================================================== 
+      axios({
+            "method":"GET",
+            "url":"https://services.arcgis.com/S9th0jAJ7bqgIRjw/arcgis/rest/services/Neighbourhood_MCI/FeatureServer/0/query?where=1%3D1&outFields=AutoTheft_2019&outSR=4326&f=json"
+            })
+            .then((response)=>{
+              //- response.data.features[0].geometry
+              
+              let totalCrimes = response.data.features;
+              console.log(response.data.features.length,response.data.features );
+              let homeLat = parseFloat(document.getElementById('latResult').innerHTML);
+              let homeLng =  parseFloat(document.getElementById('lngResult').innerHTML);
+              let homeLatUpper = homeLat + 0.03;
+              let homeLatLower = homeLat - 0.03;
+              let homeLngUpper = homeLng+ 0.03;
+              let homeLngLower = homeLng - 0.03;
+              let crimeScene;
+              let carTheftCount = 0;
+
+
+            for(let i = 0; i < totalCrimes.length; i++){
+              for(let j = 0; j < totalCrimes[i].geometry.rings[0].length; j++ ){
+
+                let crimeLng = response.data.features[i].geometry.rings[0][j][0];
+                let crimeLat = response.data.features[i].geometry.rings[0][j][1];
+
+                //- if (((crimeLat <= homeLatUpper) && (crimeLat >= homeLatLower)) && ((crimeLng <=homeLngUpper) && (crimeLng >= homeLngLower))){
+                //-   crimeScene = true;
+                //-   break;
+                //- }
+
+                if ((crimeLat.toFixed(2) == homeLat.toFixed(2)) && (crimeLng.toFixed(2) == homeLng.toFixed(2))){
+                  crimeScene = true;
+                  break;
+                } else {
+                  crimeScene = false;
+                  break;
+                }
+              if(crimeScene == true){
+                carTheftCount += totalCrimes[i].attributes.AutoTheft_2019;
+                console.log(carTheftCount)
+              }
+              }
+              
+                
+            }
+            console.log("CRIME COUNT FOR AUTO THEFT:", carTheftCount);
+            crimeOutput.innerHTML = "<p>Car Theft Occurences 2019: <strong class='text-danger'>" + carTheftCount + "</strong> </p>";
+
+
+            })
+            .catch((error)=>{
+              console.log(error)
+               crimeOutput.innerHTML =`<h4 class="text-warning">Failed to fetch data. Please try again</h4>`
+            })
+
+      //- ===========================================Assault=============================================================== 
+
+
+      //------------------ CODE FOR CRIME END -------------------------------------
+      }
 
 
       //- CODE FOR BREEZOMETER AIR QUALITY//
@@ -376,7 +460,6 @@ html(lang='en')
 
 
       //- CODE FOR BREEZOMETER AIR QUALITY//
->>>>>>> Stashed changes
           // endOdTopNav
           // Traversy Google Geocode API & JavaScript Tutorial - for getting lat-long
           // END OF MODAL

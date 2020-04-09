@@ -1,0 +1,87 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, shrink-to-fit=no')
+    title Account Settings
+    // BOOTSTRAP
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
+    script(async='', src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n', crossorigin='anonymous')
+    script(async='', src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo', crossorigin='anonymous')
+    script(async='', src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n', crossorigin='anonymous')
+
+    // FONTAWESOME
+    script(src='https://kit.fontawesome.com/3d3ae9b37d.js', crossorigin='anonymous')
+    // GOOGLE FONT
+    link(href='https://fonts.googleapis.com/css?family=Montserrat&display=swap', rel='stylesheet')
+    // STYLESHEET
+    link(rel='stylesheet', href='/stylesheets/dashboard.css')
+
+
+  body
+    nav.navbar.navbar-expand-md.navbar-light
+      button.navbar-toggler.ml-auto.mb-2.bg-light(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.navbar-toggler-icon
+      #myNavbar.collapse.navbar-collapse
+        .container-fluid
+          .row
+            // sidebar
+            .col-lg-3.col-xl-2.col-md-4.sidebar.fixed-top
+              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') Localetti
+              .bottom-border.pb-3
+                //- img.rounded-circle.mr-3(src='https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260', alt='Image on Profile dashboard', width='50', height='50')
+                h3.text-white #{name}
+                a.text-white(href='#') #{mail}
+              ul.navbar-nav.flex-column.mt-4
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2(href='profile')
+                    i.fa.fa-home.text-light.fa-lg.mr-2
+                    | Dashboard
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link.current(href='#')
+                    i.fa.fa-user.text-light.fa-lg.mr-2
+                    | Account Settings
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fa.fa-envelope.text-light.fa-lg.mr-2
+                    | Inbox (WIP)
+            // end of sidebar
+            // topNav
+            .col-lg-9.col-xl-10.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar(style='z-index:10;')
+              .row.align-item-center
+                .col-md-9
+                  h4.text-light.text-uppercase.mt-1 #{name} - Dashboard
+                .col-md-3
+                  ul.navbar-nav
+                    ul.nav-item.ml-md-auto.icon-parent
+                      a.nav-link.icon-bullet.text-white(href='logout')
+                        i.fas.fa-sign-out-alt.text-muted.fa-lg
+                        | Logout
+
+
+    section
+        .container-fluid
+            .row
+                .col-lg-9.col-md-8.ml-auto
+                    .row.pt-5.mt-3.mb-5
+                        .col-lg-1
+                        .col-sm-12.col-md-12.col-lg-10.pd-2
+                            .card
+                                .card-body
+                                    i.fas.fa-map.fa-2x.text-info.mb-3  Manage Subscription
+                                    div
+                                        a.btn.btn-success(href='/charge') Activate Monthly Subscription
+                                        ul.mt-3
+                                            li Unlimited Monthly API calls
+                                            li 15 days trial period
+                                            li Know a neighborhood's Safety Index
+                                            li Give your customer's peace of mind by showing live data
+
+                        .col-lg-1
+
+
+
+    script(src='https://unpkg.com/axios/dist/axios.min.js')
+    script.
+    
