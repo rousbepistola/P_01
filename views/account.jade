@@ -28,7 +28,11 @@ html(lang='en')
           .row
             // sidebar
             .col-lg-3.col-xl-2.col-md-4.sidebar.fixed-top
-              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') Localetti
+              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') 
+                img(src='images/Localetti.png', alt='Localetti logo' style="width:3rem; height: auto") 
+                p Localetti
+                h6
+                  small.badge.badge-pill.badge-success.mx-3 Localetti Credits: #{lc}
               .bottom-border.pb-3
                 //- img.rounded-circle.mr-3(src='https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260', alt='Image on Profile dashboard', width='50', height='50')
                 h3.text-white #{name}
@@ -69,12 +73,12 @@ html(lang='en')
                         .col-sm-12.col-md-12.col-lg-10.pd-2
                             .card
                                 .card-body
-                                    i.fas.fa-map.fa-2x.text-info.mb-3  Manage Subscription
+                                    i.fas.fa-search-location.fa-2x.text-info.mb-3  Add Search Credits
                                     div
-                                        a.btn.btn-success(href='/charge') Activate Monthly Subscription
+                                        a.btn.btn-success(href='/charge') Purchase Localetti Credits
                                         ul.mt-3
-                                            li Unlimited Monthly API calls
-                                            li 15 days trial period
+                                            li Choose search credits that matches your need
+                                            li 3 free searches for new *
                                             li Know a neighborhood's Safety Index
                                             li Give your customer's peace of mind by showing live data
 
@@ -84,4 +88,5 @@ html(lang='en')
 
     script(src='https://unpkg.com/axios/dist/axios.min.js')
     script.
+    
     

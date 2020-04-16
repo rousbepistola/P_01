@@ -56,6 +56,11 @@ router.post('/', function(req, res, next){
             } else if (passwordMatched == true) {
                 ssn.firstName = data.fname;
                 ssn.userEmail = data.email;
+                if(!data.lc){
+                    ssn.localettiCredit = 0;
+                  } else {
+                      ssn.localettiCredit = data.lc;
+                  }
                 console.log("data existing and password matched");
                 console.log(ssn.firstName);
                 res.redirect("profile");

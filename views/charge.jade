@@ -19,10 +19,8 @@ html(lang='en')
     link(rel='stylesheet', href='/stylesheets/dashboard.css')
     // STRIPE CHECKOUT
     script(src='https://js.stripe.com/v3/')
-    style.
-        .form-row {
-        display: inherit;
-        }
+
+    
 
 
     
@@ -37,7 +35,11 @@ html(lang='en')
           .row
             // sidebar
             .col-lg-3.col-xl-2.col-md-4.sidebar.fixed-top
-              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') Localetti
+              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') 
+                img(src='images/Localetti.png', alt='Localetti logo' style="width:3rem; height: auto") 
+                p Localetti
+                h6
+                  small.badge.badge-pill.badge-success.mx-3 Localetti Credits: #{lc}
               .bottom-border.pb-3
                 //- img.rounded-circle.mr-3(src='https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260', alt='Image on Profile dashboard', width='50', height='50')
                 h3.text-white #{name}
@@ -48,7 +50,7 @@ html(lang='en')
                     i.fa.fa-home.text-light.fa-lg.mr-2
                     | Dashboard
                 li.nav-item
-                  a.nav-link.text-white.p-3.mb-2.sidebar-link.current(href='#')
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link.current(href='/account')
                     i.fa.fa-user.text-light.fa-lg.mr-2
                     | Account Settings
                 li.nav-item
@@ -60,7 +62,7 @@ html(lang='en')
             .col-lg-9.col-xl-10.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar(style='z-index:10;')
               .row.align-item-center
                 .col-md-9
-                  h4.text-light.text-uppercase.mt-1 #{name} - Dashboard
+                  h4.text-light.text-uppercase.mt-1 #{name} - Dashboard 
                 .col-md-3
                   ul.navbar-nav
                     ul.nav-item.ml-md-auto.icon-parent
@@ -77,101 +79,46 @@ html(lang='en')
                         .col-lg-1
                         .col-sm-12.col-md-12.col-lg-10.pd-2
                             .card
-                                .card-body
-                                    i.fas.fa-map.fa-2x.text-info.mb-3  Activate your subscription
-                                    div
-                                        form#subscription-form
-                                            #card-element.MyCardElement
-                                                // Elements will create input elements here
-                                                // We'll put the error messages in this element
-                                            #card-errors(role='alert')
-                                            button.btn.btn-success.mt-3(type='submit') Subscribe
-                                            p
-                                                small.mt-3 
-                                                    p
-                                                        |As per stripe documentation:
-                                                    p
-                                                        |Use the test card number 4242 4242 4242 4242, any three-digit CVC number, any expiration date in the future, and any five-digit ZIP code.
-                                            p.mt-5.text-warning#paymentError
+                              .card-body 
+                                h5 Add Localetti Credits
+                                button#checkout-button-sku_H6XwwxySTzDoHG.my-3(style='background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em; width:10rem', role='link')
+                                  | Tourist
+                                ul
+                                  li Purchase 1 LC (Localetti Credit)
+                                  li $0.99 CAD
+                                  li Credits expire after 1 month*
 
+                                button#checkout-button-sku_H6YumHeoXLGOeh.my-3(style='background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em; width:10rem', role='link')
+                                  | Local
+                                ul
+                                  li Purchase 5 LC (Localetti Credit)
+                                  li $3.99 CAD
+                                  li Credits expire after 1 month*
 
+                                button#checkout-button-sku_H6Yvd8j6RbvpTU.my-3(style='background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em; width:10rem', role='link')
+                                  | Jetsetter
+                                ul
+                                  li Purchase 10 LC (Localetti Credit)
+                                  li $7.00 CAD
+                                  li Credits expire after 1 month*
+                                  
+                                #error-message
+                                hr.mt-5
+                                div.mt-5
+                                  small.mt-3 
+                                      h6.mt-3
+                                          |While we are on developmental stages of the website, we offer free usage by offering search credit purchase using the test card below.
+                                      h6.mt-3
+                                          |•TEST card number 4242 4242 4242 4242, any three-digit CVC number, any expiration date in the future, and any five-digit ZIP code.
                         .col-lg-1
 
 
 
     script(src='https://unpkg.com/axios/dist/axios.min.js')
+    script(src='/js/chargePage.js', async="")
     script.
-        // Set your publishable key: remember to change this to your live publishable key in production
-        // See your keys here: https://dashboard.stripe.com/account/apikeys
-        var stripe = Stripe('pk_test_uldQfpLT7sjH9MZwQqz4eCNO00rPVteNoO');
-        var elements = stripe.elements();
-        // Set up Stripe.js and Elements to use in checkout form
-        var style = {
-        base: {
-            color: "#32325d",
-            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-            fontSmoothing: "antialiased",
-            fontSize: "16px",
-            "::placeholder": {
-            color: "#aab7c4"
-            }
-        },
-        invalid: {
-            color: "#fa755a",
-            iconColor: "#fa755a"
-        }
-        };
-
-        var cardElement = elements.create("card", { style: style });
-        cardElement.mount("#card-element");
-
-        card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-            displayError.textContent = event.error.message;
-        } else {
-            displayError.textContent = '';
-        }
-        });
-
-
-        var form = document.getElementById('subscription-form');
-        var email = document.getElementById('userEmail');
-        var payError = document.getElementById('paymentError'); 
-
-        form.addEventListener('submit', function(event) {
-            // We don't want to let default form submission happen here,
-            // which would refresh the page.
-            event.preventDefault();
-
-            stripe.createPaymentMethod({
-                type: 'card',
-                card: cardElement,
-                billing_details: {
-                email: email.innerHTML,
-                },
-            }).then(stripePaymentMethodHandler);
-        });
-
-        function stripePaymentMethodHandler(result, email) {
-        if (result.error) {
-            // Show error in payment form
-            payError.innerHTML = `Payment was not succesful with error: ${result.error}`
-        } else {
-            // Otherwise send paymentMethod.id to your server
-            fetch('account', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: email.innerHTML,
-                payment_method: result.paymentMethod.id
-            }),
-            }).then(function(result) {
-            return result.json();
-            }).then(function(customer) {
-            // The customer has been created
-            });
-        }
-        }
-
+      
+      
+    
+    
     

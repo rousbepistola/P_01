@@ -9,11 +9,17 @@ const bcrypt = require('bcrypt');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   ssn=req.session;
+
+  if(!ssn.localettiCredit){
+    ssn.localettiCredit = 0;
+  }
+
   if(ssn.firstName){
     ssn.loginfirst = "";
     res.render('profile', {
       name: ssn.firstName, 
-      mail: ssn.userEmail
+      mail: ssn.userEmail,
+      lc: ssn.localettiCredit
     });
   } else {
     ssn.loginfirst = "Please Login/Signup";

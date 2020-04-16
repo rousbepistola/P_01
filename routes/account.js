@@ -19,9 +19,15 @@ const bcrypt = require('bcrypt');
 
 router.get('/', function(req, res, next) {
     ssn = req.session;
+
+    if(!ssn.localettiCredit){
+      ssn.localettiCredit = 0;
+    }
+
     res.render('account', {
       name: ssn.firstName, 
-      mail: ssn.userEmail
+      mail: ssn.userEmail,
+      lc:ssn.localettiCredit
     });
 
 });

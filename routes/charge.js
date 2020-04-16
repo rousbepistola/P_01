@@ -11,19 +11,33 @@ let url = "mongodb+srv://rousbepistola:3te5hrlns2gy@cluster0-1lsui.azure.mongodb
 const bcrypt = require('bcrypt');
 
 
-/* GET home page. */
-// STRIPE CODE
-
-
-
-
 router.get('/', function(req, res, next) {
+
+
     ssn = req.session;
+
+    console.log(ssn.localettiCredit, "credit is <<<<<<<<<<");
+
     res.render('charge', {
       name: ssn.firstName, 
-      mail: ssn.userEmail
+      mail: ssn.userEmail,
+      lc: ssn.localettiCredit
+
+
     });
 
 });
+
+
+router.post('/', function(req, res, next) {
+
+
+
+});
+
+
+
+
+
 
 module.exports = router;

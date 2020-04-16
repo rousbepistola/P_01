@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+const bodyParser = require('body-parser');
+const stripe = require('stripe')('sk_test_hVvxDocLHrnYccM7y2PW9U9K00tS7SXwUR');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +18,9 @@ var forgotpassRouter = require('./routes/forgotpass');
 var generatepassRouter = require('./routes/generatepass');
 var accountRouter = require('./routes/account');
 var chargeRouter = require('./routes/charge');
+var touristRouter = require('./routes/localettiCredits/tourist');
+var localRouter = require('./routes/localettiCredits/local');
+var jetsetterRouter = require('./routes/localettiCredits/jetsetter');
 
 
 var app = express();
@@ -29,6 +35,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:'anything'}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(function(req,res,next){
   res.locals.session = req.session;
   next();
@@ -44,6 +52,9 @@ app.use('/forgotpass', forgotpassRouter);
 app.use('/generatepass', generatepassRouter);
 app.use('/account', accountRouter);
 app.use('/charge', chargeRouter);
+app.use('/tourist', touristRouter);
+app.use('/local', localRouter);
+app.use('/jetsetter', jetsetterRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
