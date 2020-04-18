@@ -6,7 +6,14 @@ let url = process.env.MONGO_URL;
 
 router.get('/', function(req, res, next) {
   ssn = req.session;
-  ssn.localettiCredit += 10;
+  ssn.localettiCredit -= 1;
+
+  if(ssn.localettiCredit < 0) {
+    ssn.needMoreLc = true  
+    ssn.localettiCredit = 0;
+  }else {
+    ssn.needMoreLc = false
+  }
 
   MongoClient.connect(url, function(err, db){
     if(err) throw err; 
@@ -23,10 +30,8 @@ router.get('/', function(req, res, next) {
 
   console.log(ssn.localettiCredit);
 
-    res.redirect('charge');
+    res.status(200).send({ credits: ssn.localettiCredit, needCredits: ssn.needMoreLc });
     
   });
-
-
 
 module.exports = router;

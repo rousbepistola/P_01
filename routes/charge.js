@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var ssn;
-const stripe = require('stripe')('sk_test_hVvxDocLHrnYccM7y2PW9U9K00tS7SXwUR');
+const stripe = require('stripe')(process.env.STRIPE_TEST_SK);
 const bodyParser = require('body-parser');
 
 
 //variable reqs
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb+srv://rousbepistola:3te5hrlns2gy@cluster0-1lsui.azure.mongodb.net/test?retryWrites=true&w=majority";
+let url = process.env.MONGO_URL;
 const bcrypt = require('bcrypt');
 
 

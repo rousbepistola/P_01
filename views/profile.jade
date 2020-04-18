@@ -28,12 +28,13 @@ html(lang='en')
                 img(src='images/Localetti.png', alt='Localetti logo' style="width:3rem; height: auto") 
                 p Localetti
                 h6
-                  small.badge.badge-pill.badge-success.mx-3 Localetti Credits: #{lc}
+                  small.badge.badge-pill.badge-success.mx-3 
+                    span#localettiCredits Localetti Credits: #{lc}
 
               .bottom-border.pb-3
                 //- img.rounded-circle.mr-3(src='https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260', alt='Image on Profile dashboard', width='50', height='50')
                 h3.text-white #{name}
-                a.text-white(href='#') #{mail}
+                a.text-white.badge.badge-pill(href='#') #{mail}
               ul.navbar-nav.flex-column.mt-4
                 li.nav-item
                   a.nav-link.text-white.p-3.mb-2.current(href='#')

@@ -1,4 +1,3 @@
-console.log("Hello!");
 
 // SCRIPT FOR TOURIST-------------------------------------------------------------
 
@@ -17,8 +16,10 @@ console.log("Hello!");
       // a successful payment.
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
-      successUrl: 'http://localhost:3000/tourist',  //add credit processor
-      cancelUrl: 'http://localhost:3000/charge?success=false',  //error processor
+      //successUrl: 'http://localhost:3000/tourist',   //uncomment for development
+      //cancelUrl: 'http://localhost:3000/charge?success=false',  //uncomment for development
+       successUrl: 'https://vaught.azurewebsites.net/tourist',  
+       cancelUrl: 'https://vaught.azurewebsites.net/charge?success=false',  
     })
     .then(function (result) {
       if (result.error) {
@@ -50,8 +51,10 @@ console.log("Hello!");
       // a successful payment.
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
-      successUrl: 'http://localhost:3000/local',  //add credit processor
-      cancelUrl: 'http://localhost:3000/charge?success=false',  //error processor
+      //successUrl: 'http://localhost:3000/local',  //UNCOMMENT FOR DEVELOPMENT
+      //cancelUrl: 'http://localhost:3000/charge?success=false',  //UNCOMMENT FOR DEVELOPMENT
+       successUrl: 'https://vaught.azurewebsites.net/local',  
+       cancelUrl: 'https://vaught.azurewebsites.net/charge?success=false',  
     })
     .then(function (result) {
       if (result.error) {
@@ -82,8 +85,12 @@ console.log("Hello!");
       // a successful payment.
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
-      successUrl: 'http://localhost:3000/jetsetter',  //add credit processor
-      cancelUrl: 'http://localhost:3000/charge?success=false',  //error processor
+      // successUrl: 'http://localhost:3000/jetsetter',  //UNCOMMENT FOR DEVELOPMENT
+      // cancelUrl: 'http://localhost:3000/charge?success=false',  //UNCOMMENT FOR DEVELOPMENT
+
+      successUrl: 'https://vaught.azurewebsites.net/jetsetter',  
+      cancelUrl: 'https://vaught.azurewebsites.net/charge?success=false',  
+
     })
     .then(function (result) {
       if (result.error) {

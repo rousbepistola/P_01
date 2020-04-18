@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var ssn;
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb+srv://rousbepistola:3te5hrlns2gy@cluster0-1lsui.azure.mongodb.net/test?retryWrites=true&w=majority";
+let url = process.env.MONGO_URL;
 const bcrypt = require('bcrypt');
 
 

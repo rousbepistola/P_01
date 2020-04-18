@@ -51,6 +51,10 @@
       document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
       document.getElementById('address-components').innerHTML = addressComponentsOutput;
       document.getElementById('geometry').innerHTML = geometryOutput;
+
+      //Reduce LC to update
+      reduceLc();
+
       })
       .catch(function(error){
       console.log(error);
@@ -194,7 +198,7 @@
         let airLng = document.getElementById('lngResult').innerHTML;
         let airQualityOutput2 =  document.getElementById('airQualityOutput2');
         airQualityOutput2.innerHTML = `<div class="spinner-border text-success"></div>`;
-        let breezoKey = '453ca008418a45f889a118dcb9cac1da';
+        let breezoKey = '453ca008418a45f889a118dcb9cac1da'
 
         axios({
             "method":"GET",
@@ -312,9 +316,49 @@
 
 
 
+
+
       //- CODE FOR BREEZOMETER AIR QUALITY//
           // endOdTopNav
           // Traversy Google Geocode API & JavaScript Tutorial - for getting lat-long
           // END OF MODAL
           // JQUERY CDN
-    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=', crossorigin='anonymous')
+    // script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=', crossorigin='anonymous')
+
+
+// CODE FOR REDUCING NUMBER OF CREDIT SEARCHES
+
+  
+
+
+    async function reduceLc(){
+
+      let LC = document.getElementById("localettiCredits");
+      let geoNone = document.getElementById("geometry");
+      let formattedAddressNone = document.getElementById("formatted-address");
+      let addressComponentsNone = document.getElementById("address-components")
+      
+      await axios({
+          "method":"GET",
+          "url":"/reduceLc"
+          })
+          .then((response)=>{
+            console.log(response.data.credits);
+            let creditsLeft = response.data.credits;
+            let needCredits = response.data.needCredits;
+            if (needCredits == true){
+              formattedAddressNone.innerHTML = "";
+              addressComponentsNone.innerHTML ="";
+              geoNone.innerHTML = `<span class="text-danger">You have ${creditsLeft} credits left. Go to <strong>Account Settings</strong> to add more credits</span>`;
+            }
+            LC.innerHTML = `Localetti Credits: ${response.data.credits}`
+          })
+          .catch((error)=>{
+            console.log("This is an error")
+          })
+       
+        
+    }
+
+
+    

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var ssn;
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb+srv://rousbepistola:3te5hrlns2gy@cluster0-1lsui.azure.mongodb.net/test?retryWrites=true&w=majority";
+let url = process.env.MONGO_URL;
 let nodemailer = require('nodemailer');
 
 router.post('/', function(req, res, next) {
@@ -40,8 +40,8 @@ router.post('/', function(req, res, next) {
                         secure: true, 
                         service: 'gmail',
                         auth: {
-                            user: 'test.audreysedgeley@gmail.com',
-                            pass: '3te5hrlns2gy'
+                            user: process.env.NODEMAILER_EMAIL,
+                            pass: process.env.NODEMAILER_PASS
                         }
                     });
                     console.log("okay til here1")

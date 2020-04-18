@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 const bodyParser = require('body-parser');
-const stripe = require('stripe')('sk_test_hVvxDocLHrnYccM7y2PW9U9K00tS7SXwUR');
+const stripe = require('stripe')(process.env.STRIPE_TEST_SK);
+require('dotenv').config();
 
 
 var indexRouter = require('./routes/index');
@@ -21,6 +22,7 @@ var chargeRouter = require('./routes/charge');
 var touristRouter = require('./routes/localettiCredits/tourist');
 var localRouter = require('./routes/localettiCredits/local');
 var jetsetterRouter = require('./routes/localettiCredits/jetsetter');
+var reduceLcRouter = require('./routes/localettiCredits/reduceLc');
 
 
 var app = express();
@@ -55,6 +57,7 @@ app.use('/charge', chargeRouter);
 app.use('/tourist', touristRouter);
 app.use('/local', localRouter);
 app.use('/jetsetter', jetsetterRouter);
+app.use('/reduceLc', reduceLcRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
