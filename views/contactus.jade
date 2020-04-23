@@ -1,0 +1,169 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title NODEJS_Project1
+    // BOOTSTRAP
+    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js', integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n', crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
+    // fonts
+    link(href='https://fonts.googleapis.com/css?family=Maven+Pro|Montserrat|Raleway&display=swap', rel='stylesheet')
+    //fontawesome
+    script(src='https://kit.fontawesome.com/3d3ae9b37d.js', crossorigin='anonymous')
+    // css
+    //unpkg aos animations
+    link(href='https://unpkg.com/aos@2.3.1/dist/aos.css', rel='stylesheet')
+
+
+    style.
+      * { font-family: 'Montserrat', sans-serif;
+      font-family: 'Raleway', sans-serif;
+      font-family: 'Maven Pro', sans-serif;
+      }
+      .bg{
+      background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("https://images.pexels.com/photos/1604202/pexels-photo-1604202.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+      background-repeat: no-repeat;
+      width:100%;
+      height: auto;
+      background-attachment: fixed;
+      }
+      .form-container{
+      color:whitesmoke;
+      border: 1px solid lightslategray;
+      padding: 50px 60px;
+      margin-top: 20vh;
+      -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+      -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+      box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+      }
+      .form-container a{
+      color: rgb(40, 221, 212);
+      text-decoration-line: underline;
+      padding: 1rem;
+      }
+      #banner{
+          background-image: url("/images/contactBanner.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          height: 20rem; 
+          background-position: center center;
+      }
+      .cardText{
+          color: rgb(205,205,205)
+      }
+
+      .contactSpan{
+          background: rgba(15,15,15,0.5)
+      }
+        @media only screen and (max-width: 768px) {
+
+        }
+  body
+    // Navigation
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      a.navbar-brand(href='#') Localetti
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav
+          li.nav-item.active
+            a.nav-link(href='/') Home
+          li.nav-item
+            a.nav-link(href='signup') Signup
+          li.nav-item.active
+            a.nav-link(href='contactus') Contact Us
+          li.nav-item
+            a.nav-link(href='profile') Profile
+    // navigation end
+   .container-fluid.bg
+        .row
+            .col-md-1.col-lg-1.col-xl-1
+            .col-xs-12.col-sm-12.col-md-12.col-lg-10.col-xl-10
+                .row.my-2
+                    .col-sm-12.col-xs-12.col-md-12.col-lg-12.col-xl-12#banner(style='')
+                .row.my-1
+                    .col-sm-12.col-xs-12.col-md-12.col-lg-12.col-xl-12
+                        //- h2.primary-text.text-light.text-center We Know your neighborhood
+            .col-lg-1.col-xl-1
+    
+
+        .row.my-3
+            .col-md-1.col-lg-1.col-xl-1
+            .col-xs-12.col-sm-12.col-md-10.col-lg-10.col-xl-10
+                .row.align-items-center.mb-5.contactSpan
+                    .col-xs-2.col-sm-2.col-md-2.col-lg-2.col-xl-2.my-3
+                    
+                    .col-xs-7.col-sm-7.col-md-7.col-lg-7.col-xl-7.my-5
+                        H2.text-light.text-center Contact our team to know how we can 
+                        H2.text-light.text-center help you better
+
+                    .col-xs-1.col-sm-1.col-md-1.col-lg-1.col-xl-1.my-5.text-center
+                        a.my-auto(type="button", data-toggle="modal", data-target="#exampleModal")
+                            i.fas.fa-envelope.fa-3x.text-warning
+                            h6.text-info Contact Us
+
+                    .col-xs-2.col-sm-2.col-md-2.col-lg-2.col-xl-2.my-3
+
+                .row.align-items-center.my-5
+                    .col-xs-12.col-sm-12.col-md-3.col-lg-3.col-xl-3.my-3(data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000")
+                        img(src="/images/cards.png", alt="an image about localetti cards", style="width: 100%")
+                    .col-xs-12.col-sm-12.col-md-9.col-lg-9.col-xl-9.my-3
+                        h3.text-center.cardText(data-aos="fade-up" data-aos-duration="3000" data-aos-offset="300" data-aos-easing="ease-in-sine") Localetti "Cards" can help you see information about the neighborhood with a touch of a button
+                .row.align-items-center.my-5
+                    .col-xs-12.col-sm-12.col-md-3.col-lg-3.col-xl-3.my-3(data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000")
+                        img(src="/images/neighborhoodConnections.png", alt="an image about localetti cards", style="width: 100%")
+                    .col-xs-12.col-sm-12.col-md-9.col-lg-9.col-xl-9.my-3
+                        h3.text-center.cardText(data-aos="fade-up" data-aos-duration="3000" data-aos-offset="300" data-aos-easing="ease-in-sine") See different information that builds your neighborhood. Pollution, Crime-rate, Average Neighborhood income and more
+                .row.align-items-center.my-5
+                    .col-xs-12.col-sm-12.col-md-3.col-lg-3.col-xl-3.my-3(data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000")
+                        img(src="/images/explore.png", alt="an image about localetti cards", style="width: 100%")
+                    .col-xs-12.col-sm-12.col-md-9.col-lg-9.col-xl-9.my-3
+                        h3.text-center.cardText(data-aos="fade-up" data-aos-duration="3000" data-aos-offset="300" data-aos-easing="ease-in-sine") Partner with us to see how we can make solutions for your company
+                
+                    
+            .col-md-1.col-lg-1.col-xl-1
+
+
+        .row.contactSpan
+            .col
+                p.text-light.my-5.text-center FOOTER PLACEHOLDER
+    
+
+
+        // Modal
+      #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              h5#exampleModalLabel.modal-title Localetti team would love to hear from you!
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              section
+                div
+                  .row
+                    .col-sm-12
+                      .row
+                        .col-sm-12
+                          div
+                            h5 CONTACT US
+                          form(method='post', data-form-title='CONTACT US', action='/mailer')
+                            input(type='hidden', data-form-email='true')
+                            .form-group
+                              input.form-control(type='text', name='name', required='', placeholder='Name*', data-form-field='Name')
+                            .form-group
+                              input.form-control(type='email', name='contactEmail', required='', placeholder='Email*', data-form-field='Email')
+                            .form-group
+                              input.form-control(type='tel', name='phone', placeholder='Phone', data-form-field='Phone')
+                            .form-group
+                              textarea.form-control(name='message', placeholder='Message', rows='7', data-form-field='Message')
+                            .form-group
+                              button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                              button.btn.btn-primary.ml-2(type='submit') Send
+     
+        script(src='https://unpkg.com/aos@2.3.1/dist/aos.js')
+        script.
+            AOS.init();

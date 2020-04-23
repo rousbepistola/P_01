@@ -23,6 +23,8 @@ var touristRouter = require('./routes/localettiCredits/tourist');
 var localRouter = require('./routes/localettiCredits/local');
 var jetsetterRouter = require('./routes/localettiCredits/jetsetter');
 var reduceLcRouter = require('./routes/localettiCredits/reduceLc');
+var mailerRouter = require('./routes/mailer');
+var contactusRouter = require('./routes/contactus');
 
 
 var app = express();
@@ -58,6 +60,8 @@ app.use('/tourist', touristRouter);
 app.use('/local', localRouter);
 app.use('/jetsetter', jetsetterRouter);
 app.use('/reduceLc', reduceLcRouter);
+app.use('/mailer', mailerRouter);
+app.use('/contactus', contactusRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
