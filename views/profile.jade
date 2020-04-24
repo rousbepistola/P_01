@@ -15,6 +15,14 @@ html(lang='en')
     link(href='https://fonts.googleapis.com/css?family=Montserrat&display=swap', rel='stylesheet')
     // STYLESHEET
     link(rel='stylesheet', href='/stylesheets/dashboard.css')
+    // jquery plugin circular bars
+    link(rel='stylesheet', href='stylesheets/percircle.css')
+    script(src='//code.jquery.com/jquery.min.js')
+
+
+
+
+
   body
     nav.navbar.navbar-expand-md.navbar-light
       button.navbar-toggler.ml-auto.mb-2.bg-light(type='button', data-toggle='collapse', data-target='#myNavbar')
@@ -28,7 +36,7 @@ html(lang='en')
                 img(src='images/Localetti.png', alt='Localetti logo' style="width:3rem; height: auto") 
                 p Localetti
                 h6
-                  h6.text-light.mx-3(style='padding:0.5rem;background: rgba(45,145,45,0.1);border-radius: 25px 25px 25px 25px;-moz-border-radius: 25px 25px 25px 25px;-webkit-border-radius: 25px 25px 25px 25px;border: 3px solid #51e06d;') 
+                  h6.text-light.mx-3#lcCredits(style='') 
                     span#localettiCredits Localetti Credits: #{lc}
 
               .bottom-border.pb-3
@@ -65,47 +73,184 @@ html(lang='en')
     section
       .container-fluid
         .row
-          .col-lg-9.col-md-8.ml-auto
-            .row.pt-5.mt-3.mb-5
-              .col-lg-1
+          .col-lg-10.col-md-8.ml-auto
+            .row.pt-5.mt-1.mb-5
+              .col-lg-1.col-xl-1
               .col-sm-12.col-md-12.col-lg-10.pd-2
-                .col-md-5.mb-5
-                  form(action='#' id="location-form")
-                    .input-group
-                      input.form-control.search-input.text-dark(type='text',id="location-input" placeholder='Search neighborhood . . .')
-                      button.btn.btn-info(type='submit')
-                        i.fas.fa-search.text-danger.search-button
                 .card
                   .card-body
-                    i.fas.fa-map.fa-2x.text-info.mb-3  Location Information
-                    #geometry Search a neighborhood to start
-                    .text-left.text-secondary
-                      p#formatted-address 
-                      p#address-components
-              .col-lg-1
+                    i.fas.fa-map.fa-2x.text-info.mb-3  Find Your Neighborhood
+                    .row
+                      .col-md-1.col-lg-1.col-xl-1
+                      .col-xs-12.col-sm-12.col-md-10.col-lg-10.-col-xl-10
+                        form(action='#' id="location-form")
+                          .input-group
+                            input.form-control.search-input.text-dark(type='text',id="location-input" placeholder='Search neighborhood . . .')
+                            button.btn.btn-info(type='submit')
+                              i.fas.fa-search.text-danger.search-button
+                      .col-md-1.col-lg-1.col-xl-1
 
-          .col-lg-9.col-md-8.ml-auto
+
+                    .row.py-3
+                      .col-md-1.col-lg-1.col-xl-1
+                      .col-xs-12.col-sm-12.col-md-10.col-lg-10.-col-xl-10
+                        .text-center.text-secondary
+                          h6#formatted-address 
+                      .col-md-1.col-lg-1.col-xl-1
+
+                      .col-md-1.col-lg-1.col-xl-1
+                      .col-xs-12.col-sm-12.col-md-10.col-lg-10.-col-xl-10.text-center
+                        #geometry 
+                        h6#address-components(style='visibility:hidden')
+                      .col-md-1.col-lg-1.col-xl-1
+
+                    //- SUMMARY OF ALL CARDS HIDE WHEN NOT NEEDED
+                    .row.mb-5#summary(style='display:none')
+                      .col-md-1.col-lg-1.col-xl-1
+                      .col-xs-12.col-sm-12.col-md-10.col-lg-10.col-xl-10
+                        .container
+                          .row
+                            //- trial for circular progress bar
+                            .col-xs-12.col-sm-12.col-md-12.col-lg-12.col-xl-12.px-auto.mx-auto.card
+                              .row
+                                .col-xs-12.col-sm-12.col-md-4.col-lg-4.col-xl-4.px-auto.mx-auto.card-body.text-center(style='border-right: 2px solid lightgray')
+                                  .progress-circle.over50.p81.mx-auto
+                                    span 81%
+                                    .left-half-clipper
+                                      .first50-bar
+                                      .value-bar
+                                  h4 Neighborhood Score
+                                  .row.text-center
+                                      small.my-2.badge.badge-success.mx-auto *CardScore: 92
+                                      small.my-2.badge.badge-warning.mx-auto  *CardScore: 79
+                                  .row.text-center
+                                      h6.my-2.badge.badge-success.mx-auto *CardScore: 86
+                                      h6.my-2.badge.badge-danger.mx-auto *CardScore: 68
+
+                                .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-xl-8.px-auto.mx-auto.card-body
+                                  table.table.table-striped
+                                    thead
+                                      tr
+                                        th(scope='col') CARD
+                                        th(scope='col') HIGH
+                                        th(scope='col') LOW
+                                    tbody
+                                      tr.table-success
+                                        th(scope='row') Pollution
+                                        td param 1
+                                        td param 2
+                                      tr.table-warning
+                                        th(scope='row') Crime Rate
+                                        td param 1
+                                        td param 2
+                                      tr.bg-danger
+                                        th(scope='row') Neighborhood income
+                                        td param 1
+                                        td param 2
+                                      
+
+                            .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
+                              .card-body.text-center
+                                h4 Summary: Air Quality excellent (Placeholder)
+                                .progress.blue
+                                  span.progress-left
+                                    span.progress-bar
+                                  span.progress-right
+                                    span.progress-bar
+                                  .progress-value 90%
+                                h6.py-3 Air Quality Score
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                
+
+
+
+                            .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
+                              .card-body.text-center
+                                h4 Summary: Crime Rate Safety good (Placeholder)
+                                .progress.yellow
+                                  span.progress-left
+                                    span.progress-bar
+                                  span.progress-right
+                                    span.progress-bar
+                                  .progress-value 75%
+                                h6.py-3 Crime Safety Score
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+
+
+
+                            .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
+                              .card-body.text-center
+                                h4 Summary: Air Quality excellent (Placeholder)
+                                .progress.blue
+                                  span.progress-left
+                                    span.progress-bar
+                                  span.progress-right
+                                    span.progress-bar
+                                  .progress-value 90%
+                                h6.py-3 Air Quality Score
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                
+
+
+
+                            .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
+                              .card-body.text-center
+                                h4 Summary: Crime Rate Safety good (Placeholder)
+                                .progress.yellow
+                                  span.progress-left
+                                    span.progress-bar
+                                  span.progress-right
+                                    span.progress-bar
+                                  .progress-value 75%
+                                h6.py-3 Crime Safety Score
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+                                h6 Param 1: "quality"
+
+                      .col-md-1.col-lg-1.col-xl-1
+              .col-lg-1.col-xl-1
+
+            
+
+
+              
+
+          .col-lg-10.col-md-8.ml-auto
             .row.pt-5.mt-3.mb-5
               .col-lg-1
               .col-sm-12.col-md-12.col-lg-10.pd-2
                 .card
                   .card-body
                     .text-left.text-secondary
-                      button.btn.btn-info.mb-4(onclick='airQualityBreezo()') Get Air Quality from BreezoMeter
-                      h4.text-success Air Quality Summary
+                      h4.text-success Pollution Card
+                      h1.badge.badge-success Air Quality about your neighborhood
                       .col-md-12#airQualityOutput2
                       //- .progress
                       //-   .progress-bar.bg-success(role='progressbar', style='width: 75%', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
               .col-lg-1
 
-          .col-lg-9.col-md-8.ml-auto
+          .col-lg-10.col-md-8.ml-auto
             .row.pt-5.mt-3.mb-5
               .col-lg-1
               .col-sm-12.col-md-12.col-lg-10.pd-2
                 .card
                   .card-body
                     .text-left.text-secondary
-                      button.btn.btn-warning.mb-4(onclick='crimeNow()') Get Crime Rate
+                      button.btn.btn-dark.mb-4 Card under construction
                       h4.text-success Crime Rate In the area (Better Data presentation WIP)
                       p
                         strong Crimes reported on a approx 3km radius
@@ -115,7 +260,7 @@ html(lang='en')
                       //-   .progress-bar.bg-success(role='progressbar', style='width: 75%', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
               .col-lg-1
 
-          .col-lg-9.col-md-8.ml-auto
+          .col-lg-10.col-md-8.ml-auto
             .row.pt-5.mt-3.mb-5
               .col-lg-1
               .col-sm-12.col-md-12.col-lg-10.pd-2
@@ -132,7 +277,7 @@ html(lang='en')
                       //-   .progress-bar.bg-success(role='progressbar', style='width: 75%', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
               .col-lg-1
 
-          .col-lg-9.col-md-8.ml-auto
+          .col-lg-10.col-md-8.ml-auto
             .row.pt-5.mt-3.mb-5
               .col-lg-1
               .col-sm-12.col-md-12.col-lg-10.pd-2
@@ -153,3 +298,6 @@ html(lang='en')
     script(src='https://unpkg.com/axios/dist/axios.min.js')
     script(src='/js/dashboard.js', async="")
     script.
+      $("#demo").percircle();
+
+     

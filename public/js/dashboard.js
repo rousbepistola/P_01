@@ -2,6 +2,7 @@
       // geocode();
       // GET LOCATION FORM
       var locationForm = document.getElementById('location-form');
+      
       // listen for submit
       locationForm.addEventListener('submit', geocode)
       function geocode(e){
@@ -18,6 +19,7 @@
       }
       })
       .then(function(response){
+        var cardSummary = document.getElementById('summary');
         let airQualityOutput2 =  document.getElementById('airQualityOutput2');
         airQualityOutput2.innerHTML = "";
       // log full response
@@ -25,41 +27,44 @@
       // formatted address
       let formattedAddress = response.data.results[0].formatted_address;
       let formattedAddressOutput = `
-      <ul>
-      <li>${formattedAddress}</li>
-      </ul>
+      
+      <small class='text-success'><strong>${formattedAddress}</strong></small>
+      
       `;
       // ADDRESS COMPONENTS
       let addressComponents = response.data.results[0].address_components;
-      let addressComponentsOutput = '<ul>';
-      for(let i = 0; i < addressComponents.length; i++){
-      addressComponentsOutput += `
-      <li>${addressComponents[i].types[0]} :  ${addressComponents[i].long_name}</li>
-      `;
-      }
-      addressComponentsOutput += '</ul>'
+      // let addressComponentsOutput = '<ul>';
+      // for(let i = 0; i < addressComponents.length; i++){
+      // addressComponentsOutput += `
+      // <li>${addressComponents[i].types[0]} :  ${addressComponents[i].long_name}</li>
+      // `;
+      // }
+      // addressComponentsOutput += '</ul>'
       // Geometry
       let lat = response.data.results[0].geometry.location.lat;
       let lng = response.data.results[0].geometry.location.lng;
       let geometryOutput = `
-      <ul>
-      <li><strong>Latitude: </strong><span id="latResult">${lat}</span></li>
-      <li><strong>Longitude: </strong><span id="lngResult">${lng}</span></li>
-      </ul>
+      <small><strong>Latitude: </strong><span id="latResult">${lat}</span></small>
+      <small><strong>Longitude: </strong><span id="lngResult">${lng}</span></small>
       `;
       // OUTPUT TO APP
       document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
-      document.getElementById('address-components').innerHTML = addressComponentsOutput;
+      // document.getElementById('address-components').innerHTML = addressComponentsOutput;
       document.getElementById('geometry').innerHTML = geometryOutput;
 
+
+      // auto call airBreezo
+      airQualityBreezo()
       //Reduce LC to update
       reduceLc();
+      // Show Summary card
+      cardSummary.style.display = 'flex';
 
       })
       .catch(function(error){
       console.log(error);
       })
-
+      
       }
 
 
@@ -198,7 +203,7 @@
         let airLng = document.getElementById('lngResult').innerHTML;
         let airQualityOutput2 =  document.getElementById('airQualityOutput2');
         airQualityOutput2.innerHTML = `<div class="spinner-border text-success"></div>`;
-        let breezoKey = '453ca008418a45f889a118dcb9cac1da'
+        let breezoKey = 'b3edac64a90149a7a4641e758deda29e'
 
         axios({
             "method":"GET",
@@ -349,7 +354,7 @@
             if (needCredits == true){
               formattedAddressNone.innerHTML = "";
               addressComponentsNone.innerHTML ="";
-              geoNone.innerHTML = `<span class="text-danger">You have ${creditsLeft} credits left. Go to <strong>Account Settings</strong> to add more credits</span>`;
+              geoNone.innerHTML = `<span class="text-danger">You have ${creditsLeft} credits left. Go to <strong><a class='badge btn-success' href='/charge'>Account Settings</a></strong> to add more credits</span>`;
             }
             LC.innerHTML = `Localetti Credits: ${response.data.credits}`
           })
