@@ -41,7 +41,7 @@ html(lang='en')
       padding: 1rem;
       }
       #footer{
-        height:35vh; 
+        height:auto; 
         bottom:0; 
         background: rgb(7,7,8);
       }
@@ -49,9 +49,17 @@ html(lang='en')
         border-right: 2px solid whitesmoke
       }
       
+      .siteMap a{
+        text-decoration: none;
+        color: lightgray;
+      }
+
+      .siteMap a:hover{
+        color: lightgreen
+      }
       @media only screen and (max-width: 768px) {
         #footer{
-          height:100vh;
+          height:auto;
         }
         #secondFooterColumn{
           margin-top: 3rem;
@@ -69,11 +77,13 @@ html(lang='en')
       }
   body
     // Navigation
-    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-      a.navbar-brand(href='#') Localetti
+    nav.navbar.navbar-expand-lg.navbar-dark(style='background-color: rgba(7,7,8,1)')
+      a.navbar-brand(href='#') 
+        img.px-auto(src="/images/Localetti.png", alt="Localetti logo", style='width:3rem')
+      h4.py-auto.my-auto(style='background: -webkit-linear-gradient(180deg, rgba(161,53,53,1) 22%, rgba(27,149,129,1) 72%, rgba(129,158,187,1) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;') Localetti
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
-      #navbarNav.collapse.navbar-collapse
+      #navbarNav.collapse.navbar-collapse.ml-2
         ul.navbar-nav
           li.nav-item.active
             a.nav-link(href='/') Home
@@ -92,11 +102,14 @@ html(lang='en')
           span(aria-hidden='true') ×
 
       .row
-        .col-xs-12.col-md-4.col-sm-2
-        .col-xs-12.col-md-4.col-sm-8
+        .col-xs-12.col-sm-2.col-md-2.col-lg-4.col-xl-4
+        .col-xs-12.col-sm-8.col-md-8.col-lg-4.col-xl-4
+          
           // form start
           
           form.form-container(action='login', role='form', method="post")
+            .col.text-center(style='margin-top: -8rem;')
+              img(src='images/Localetti.png', alt='Localetti logo' style="width:10rem; height: auto;") 
             p.text-justify(style='color:salmon;') #{loginError}
             h3.text-center Login to your neighborhood
             .form-group.text-secondary
@@ -114,18 +127,39 @@ html(lang='en')
               
               
           // form end
-        .col-xs-12.col-md-4.col-sm-2
+        .col-xs-12.col-sm-2.col-md-2.col-lg-4.col-xl-4
 
         //FOOTER
     .container-fluid#footer(style='')
       p(style='position:absolute;margin-top:-1rem; text-align:center;width:98%;color:salmon')
         i.fas.fa-angle-double-down.fa-2x
-      .row.py-5(style='height:30%; text-align:center')
+      .row.py-5(style='text-align:center')
         .col-xs-12.col-sm-12.col-md-4.col-lg-4.col-xl-4.footerLogo
-          img(src="/images/Localetti.png", alt="Localetti logo", style='width:10rem')
-          h2(style='color:whitesmoke') Localetti
-        .col-xs-12.col-sm-12.col-md-4.col-lg-4.col-xl-4#secondFooterColumn.footerLogo
-          .row(style='height:50%')
+          .row.align-center
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+              img(src="/images/Localetti.png", alt="Localetti logo", style='width:5rem')
+              h5(style='color:whitesmoke') Localetti Site Map
+          .row.align-center
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+              .row.mt-5
+                .col.siteMap 
+                  h6
+                    a(href='/' style='') Home
+                .col.siteMap 
+                  h6
+                    a(href='/signup') Signup
+                .col.siteMap
+                  h6
+                    a(href='/contactus') Contact Us
+          .row.my-auto(style='height:15vh')
+            .col.py-auto
+              h6.mt-5.text-center.text-muted ©2020 RR Digital
+              h6.text-center.text-muted Placeholder Content
+          
+
+
+        .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-xl-8#secondFooterColumn
+          .row.my-3(style='height:40%')
             .col
               a(type="button", data-toggle="modal", data-target="#exampleModal")
                 i.fas.fa-envelope.fa-3x.text-warning
@@ -134,31 +168,35 @@ html(lang='en')
               img(src="/images/v3.png", alt="Value Three Website Logo", style='width:3rem; border-radius:50%')
               h6.mt-2(style='color:whitesmoke') 
                 a(href="https://valuethree.azurewebsites.net/" style='text-decoration:none; color:whitesmoke') Value Three
-          .row.mt-4(style='height:50%;')
-              .col
-                i.fas.fa-user-astronaut.fa-3x
-                h6.mt-2(style='color:whitesmoke') About Us
-              .col
-                i.fab.fa-node.fa-3x
-                h6.mt-2(style='color:whitesmoke') PlaceHolder
-          hr.hrLine
+            .col
+              i.fas.fa-user-astronaut.fa-3x
+              h6.mt-2(style='color:whitesmoke') About Us
+            .col
+              i.fab.fa-node.fa-3x
+              h6.mt-2(style='color:whitesmoke') PlaceHolder
+          .row.my-2
+            .col-xs-12.col-sm-12.col-md-3.col-lg-3.col-xl-3
+              h4(style='color:whitesmoke') Register for free!
+              a.btn.btn-danger.text-light.my-2(href='/signup') Signup!
+            .col-xs-12.col-sm-12.col-md-9.col-lg-9.col-xl-9
+              p
+                strong RR digital is an all-in-one solution to website and web-app development needs. We start by having a conversation of who you are, the concept behind what website
+                  | you want to build and then package it all together to make a website that represents YOU! Visit our contact page to start our conversation.
+
+            
         
-        .col-xs-12.col-sm-12.col-md-4.col-lg-4.col-xl-4.mt-3#siteMap(style='color:gray')
-          .row
-            .col
-              i.fas.fa-map-signs.fa-2x Site Map
-          .row.mt-5
-            .col 
-              h6 Home
-            .col 
-              h6 Signup
-            .col 
-              h6 Profile
-          .row.mt-5
-            .col
-              h6.text-center.text-muted ©2020 RR Digital
+            
+      
+      //- .row.py-5
+      //-   .col
+      //-         h6.text-center.text-muted ©2020 RR Digital
+      //-         h6.text-center.text-muted Placeholder Content
 
       // Modal
+        .col
+              a(type="button", data-toggle="modal", data-target="#exampleModal")
+                i.fas.fa-envelope.fa-3x.text-warning
+              h6.mt-2(style='color:whitesmoke') Contact Us
       #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
         .modal-dialog(role='document')
           .modal-content

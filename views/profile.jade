@@ -35,9 +35,8 @@ html(lang='en')
               a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='') 
                 img(src='images/Localetti.png', alt='Localetti logo' style="width:3rem; height: auto") 
                 p Localetti
-                h6
-                  h6.text-light.mx-3#lcCredits(style='') 
-                    span#localettiCredits Localetti Credits: #{lc}
+                h6.text-light.mx-3#lcCredits(style='') 
+                  span#localettiCredits Localetti Credits: #{lc}
 
               .bottom-border.pb-3
                 //- img.rounded-circle.mr-3(src='https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260', alt='Image on Profile dashboard', width='50', height='50')
@@ -53,12 +52,12 @@ html(lang='en')
                     i.fa.fa-user.text-light.fa-lg.mr-2
                     | Account Settings
                 li.nav-item
-                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='/contactus')
                     i.fa.fa-envelope.text-light.fa-lg.mr-2
-                    | Inbox (WIP)
+                    | Contact Us
             // end of sidebar
             // topNav
-            .col-lg-9.col-xl-10.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar(style='z-index:10;')
+            .col-lg-9.col-xl-10.col-md-8.ml-auto.fixed-top.py-2.top-navbar(style='z-index:10;background-color: rgba(7,7,8,1)')
               .row.align-item-center
                 .col-md-9
                   h4.text-light.text-uppercase.mt-1 #{name} - Dashboard
@@ -151,13 +150,15 @@ html(lang='en')
 
                             .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
                               .card-body.text-center
-                                h4 Summary: Air Quality excellent (Placeholder)
-                                .progress.blue
-                                  span.progress-left
-                                    span.progress-bar
-                                  span.progress-right
-                                    span.progress-bar
-                                  .progress-value 90%
+                                h6 Summary: Air Quality
+                                h6
+                                  small.my-2.badge.badge-success.mx-auto *CardScore: 92
+                                      
+                                .progress-circle.over50.p92.mx-auto
+                                    span 92%
+                                    .left-half-clipper
+                                      .first50-bar
+                                      .value-bar
                                 h6.py-3 Air Quality Score
                                 h6 Param 1: "quality"
                                 h6 Param 1: "quality"
@@ -170,13 +171,14 @@ html(lang='en')
 
                             .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
                               .card-body.text-center
-                                h4 Summary: Crime Rate Safety good (Placeholder)
-                                .progress.yellow
-                                  span.progress-left
-                                    span.progress-bar
-                                  span.progress-right
-                                    span.progress-bar
-                                  .progress-value 75%
+                                h6 Summary: Crime Rate Safety good 
+                                h6
+                                  small.my-2.badge.badge-warning.mx-auto  *CardScore: 79
+                                .progress-circle.over50.p79.mx-auto
+                                    span 79%
+                                    .left-half-clipper
+                                      .first50-bar
+                                      .value-bar
                                 h6.py-3 Crime Safety Score
                                 h6 Param 1: "quality"
                                 h6 Param 1: "quality"
@@ -188,14 +190,15 @@ html(lang='en')
 
                             .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
                               .card-body.text-center
-                                h4 Summary: Air Quality excellent (Placeholder)
-                                .progress.blue
-                                  span.progress-left
-                                    span.progress-bar
-                                  span.progress-right
-                                    span.progress-bar
-                                  .progress-value 90%
-                                h6.py-3 Air Quality Score
+                                h6 Summary: Neighborhood Income
+                                h6
+                                  h6.my-2.badge.badge-success.mx-auto *CardScore: 86
+                                .progress-circle.over50.p86.mx-auto
+                                    span 86%
+                                    .left-half-clipper
+                                      .first50-bar
+                                      .value-bar
+                                h6.py-3 Neighborhood Income score
                                 h6 Param 1: "quality"
                                 h6 Param 1: "quality"
                                 h6 Param 1: "quality"
@@ -207,14 +210,15 @@ html(lang='en')
 
                             .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6.px-auto.mx-auto.card
                               .card-body.text-center
-                                h4 Summary: Crime Rate Safety good (Placeholder)
-                                .progress.yellow
-                                  span.progress-left
-                                    span.progress-bar
-                                  span.progress-right
-                                    span.progress-bar
-                                  .progress-value 75%
-                                h6.py-3 Crime Safety Score
+                                h6 Summary: Population Density(Placeholder)
+                                h6
+                                  h6.my-2.badge.badge-danger.mx-auto *CardScore: 68
+                                .progress-circle.over50.p68.mx-auto
+                                    span 68%
+                                    .left-half-clipper
+                                      .first50-bar
+                                      .value-bar
+                                h6.py-3 Population Density Score
                                 h6 Param 1: "quality"
                                 h6 Param 1: "quality"
                                 h6 Param 1: "quality"

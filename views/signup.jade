@@ -12,6 +12,8 @@ html(lang='en')
     // fonts
     link(href='https://fonts.googleapis.com/css?family=Maven+Pro|Montserrat|Raleway&display=swap', rel='stylesheet')
     // css
+    //fontawesome
+    script(src='https://kit.fontawesome.com/3d3ae9b37d.js', crossorigin='anonymous')
     style.
       * { font-family: 'Montserrat', sans-serif;
       font-family: 'Raleway', sans-serif;
@@ -37,13 +39,50 @@ html(lang='en')
       text-decoration-line: underline;
       padding: 1rem;
       }
+      #footer{
+        height:auto; 
+        bottom:0; 
+        background: rgb(7,7,8);
+      }
+      .footerLogo{
+        border-right: 2px solid whitesmoke
+      }
+      
+      .siteMap a{
+        text-decoration: none;
+        color: lightgray;
+      }
+
+      .siteMap a:hover{
+        color: lightgreen
+      }
+      @media only screen and (max-width: 768px) {
+        #footer{
+          height:auto;
+        }
+        #secondFooterColumn{
+          margin-top: 3rem;
+        }
+        .footerLogo{
+          border-right:none;
+        }
+        .hrLine {
+          border: solid 1px whitesmoke;
+          margin-bottom:1rem
+        }
+        #siteMap {
+          padding-top:3rem
+        }
+      }
   body
     // Navigation
-    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-      a.navbar-brand(href='#') Localetti
+    nav.navbar.navbar-expand-lg.navbar-dark(style='background-color: rgba(7,7,8,1)')
+      a.navbar-brand(href='#') 
+        img.px-auto(src="/images/Localetti.png", alt="Localetti logo", style='width:3rem')
+      h4.py-auto.my-auto(style='background: -webkit-linear-gradient(180deg, rgba(161,53,53,1) 22%, rgba(27,149,129,1) 72%, rgba(129,158,187,1) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;') Localetti
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
-      #navbarNav.collapse.navbar-collapse
+      #navbarNav.collapse.navbar-collapse.ml-2
         ul.navbar-nav
           li
             a.nav-link(href='/') Home
@@ -60,6 +99,8 @@ html(lang='en')
         .col-xs-12.col-md-4.col-sm-8
           // form start
           form.form-container(action='profile', role='form', method="post")
+            .col.text-center(style='margin-top: -8rem;')
+                img(src='images/Localetti.png', alt='Localetti logo' style="width:10rem; height: auto;") 
             h3.text-center Register
             .form-group.text-secondary
               label(for='fname') First Name
@@ -79,3 +120,110 @@ html(lang='en')
               a(href='/' style="text-decoration:none") Already have an account
           // form end
         .col-xs-12.col-md-4.col-sm-2
+
+     //FOOTER
+    .container-fluid#footer(style='')
+      p(style='position:absolute;margin-top:-1rem; text-align:center;width:98%;color:salmon')
+        i.fas.fa-angle-double-down.fa-2x
+      .row.py-5(style='text-align:center')
+        .col-xs-12.col-sm-12.col-md-4.col-lg-4.col-xl-4.footerLogo
+          .row.align-center
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+              img(src="/images/Localetti.png", alt="Localetti logo", style='width:5rem')
+              h5(style='color:whitesmoke') Localetti Site Map
+          .row.align-center
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+              .row.mt-5
+                .col.siteMap 
+                  h6
+                    a(href='/' style='') Home
+                .col.siteMap 
+                  h6
+                    a(href='/signup') Signup
+                .col.siteMap
+                  h6
+                    a(href='/contactus') Contact Us
+          .row.my-auto(style='height:15vh')
+            .col.py-auto
+              h6.mt-5.text-center.text-muted ©2020 RR Digital
+              h6.text-center.text-muted Placeholder Content
+          
+
+
+        .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-xl-8#secondFooterColumn
+          .row.my-3(style='height:40%')
+            .col
+              a(type="button", data-toggle="modal", data-target="#exampleModal")
+                i.fas.fa-envelope.fa-3x.text-warning
+              h6.mt-2(style='color:whitesmoke') Contact Us
+            .col
+              img(src="/images/v3.png", alt="Value Three Website Logo", style='width:3rem; border-radius:50%')
+              h6.mt-2(style='color:whitesmoke') 
+                a(href="https://valuethree.azurewebsites.net/" style='text-decoration:none; color:whitesmoke') Value Three
+            .col
+              i.fas.fa-user-astronaut.fa-3x
+              h6.mt-2(style='color:whitesmoke') About Us
+            .col
+              i.fab.fa-node.fa-3x
+              h6.mt-2(style='color:whitesmoke') PlaceHolder
+          .row.my-2
+            .col-xs-12.col-sm-12.col-md-3.col-lg-3.col-xl-3
+              h4(style='color:whitesmoke') Register for free!
+              a.btn.btn-danger.text-light.my-2(href='/signup') Signup!
+            .col-xs-12.col-sm-12.col-md-9.col-lg-9.col-xl-9
+              p
+                strong RR digital is an all-in-one solution to website and web-app development needs. We start by having a conversation of who you are, the concept behind what website
+                  | you want to build and then package it all together to make a website that represents YOU! Visit our contact page to start our conversation.
+
+            
+        
+            
+      
+      //- .row.py-5
+      //-   .col
+      //-         h6.text-center.text-muted ©2020 RR Digital
+      //-         h6.text-center.text-muted Placeholder Content
+
+      // Modal
+        .col
+              a(type="button", data-toggle="modal", data-target="#exampleModal")
+                i.fas.fa-envelope.fa-3x.text-warning
+              h6.mt-2(style='color:whitesmoke') Contact Us
+      #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              h5#exampleModalLabel.modal-title Localetti team would love to hear from you!
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              section
+                div
+                  .row
+                    .col-sm-12
+                      .row
+                        .col-sm-12
+                          div
+                            h5 CONTACT US
+                          form(method='post', data-form-title='CONTACT US', action='/mailer')
+                            input(type='hidden', data-form-email='true')
+                            .form-group
+                              input.form-control(type='text', name='name', required='', placeholder='Name*', data-form-field='Name')
+                            .form-group
+                              input.form-control(type='email', name='contactEmail', required='', placeholder='Email*', data-form-field='Email')
+                            .form-group
+                              input.form-control(type='tel', name='phone', placeholder='Phone', data-form-field='Phone')
+                            .form-group
+                              textarea.form-control(name='message', placeholder='Message', rows='7', data-form-field='Message')
+                            .form-group
+                              button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                              button.btn.btn-primary.ml-2(type='submit') Send
+
+    script.
+      let emailAlert = document.getElementById('emailAlert')
+      let emailNotification = document.getElementById('emailNotification');
+      if(emailAlert.innerHTML == "Thank you for contacting us! We will respond as soon as we can"){
+      emailNotification.style.visibility = "visible";
+      } else {
+      emailNotification.style.visibility = "hidden";
+      }
