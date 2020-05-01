@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
         dbo.collection("userInfo").updateOne(myInfo,{$set: {lc: ssn.localettiCredit}}, function(err, data){
           if(err) throw err;
           console.log("Updated Localletti Credits");
+          console.log(ssn.needMoreLc, "need more LC")
           db.close();
         });
 

@@ -25,6 +25,7 @@ var jetsetterRouter = require('./routes/localettiCredits/jetsetter');
 var reduceLcRouter = require('./routes/localettiCredits/reduceLc');
 var mailerRouter = require('./routes/mailer');
 var contactusRouter = require('./routes/contactus');
+var spotcrimeRouter = require('./routes/spotcrime');
 
 
 var app = express();
@@ -62,6 +63,7 @@ app.use('/jetsetter', jetsetterRouter);
 app.use('/reduceLc', reduceLcRouter);
 app.use('/mailer', mailerRouter);
 app.use('/contactus', contactusRouter);
+app.use('/spotcrime', spotcrimeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
